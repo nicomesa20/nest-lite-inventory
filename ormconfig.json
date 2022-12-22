@@ -1,0 +1,16 @@
+{
+    "type": "mssql",
+    "host": "lite-inventory-serivce-db-server.database.windows.net",
+    "port": 1433,
+    "username": "admin12345",
+    "password": "Admin1234",
+    "database": "nest-lite-inventory-service-db",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "synchronize": false,
+    "migrationsTableName": "migration_history",
+    "migrations": ["dist/database/migrations/*{.ts,.js}"],
+    "cli": {
+      "migrationsDir": "src/database/migrations"
+    }
+}
+  

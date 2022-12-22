@@ -1,5 +1,5 @@
 import { MailerService } from "@nestjs-modules/mailer/dist";
-import { Body, Controller, Get, Param, Post, Res, UseGuards, ValidationPipe } from "@nestjs/common"
+import { Body, Controller, Delete, Get, Param, Post, Res, UseGuards, ValidationPipe } from "@nestjs/common"
 import { Roles } from "src/auth/decorators/roles.decorator";
 import { JwtAuthGuard } from "src/auth/guards";
 import { RolesGuard } from "src/auth/guards/roles.guard";
@@ -51,5 +51,13 @@ export class ArticleController {
         content: buffer,
       }]
     });
+
+  }
+
+  @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Delete('remove-article/:articleId')
+  public async deleteCompany(@Param('articleId') companyId: string) {
+    return this.articleService.delete(companyId);
   }
 }

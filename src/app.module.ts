@@ -18,9 +18,13 @@ import { UsersModule } from './users/user.module';
     CompanyModule,
     ArticleModule,
     TypeOrmModule.forRoot({
-      type: "sqlite",
-      database: "LiteThinkingDB",
-      entities: [__dirname + "/**/*.entity{.ts,.js}"],
+      type: 'mssql',
+      host: 'lite-inventory-serivce-db-server.database.windows.net',
+      port: 1433,
+      username: 'admin12345',
+      password: 'Admin1234',
+      database: 'nest-lite-inventory-service-db',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true
     }),
     MailerModule.forRoot({
