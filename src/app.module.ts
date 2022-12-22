@@ -18,7 +18,7 @@ import { UsersModule } from './users/user.module';
     CompanyModule,
     ArticleModule,
     TypeOrmModule.forRoot({
-      type :"sqlite",
+      type: "sqlite",
       database: "LiteThinkingDB",
       entities: [__dirname + "/**/*.entity{.ts,.js}"],
       synchronize: true
@@ -27,8 +27,8 @@ import { UsersModule } from './users/user.module';
       transport: {
         host: 'email-smtp.us-east-1.amazonaws.com',
         auth: {
-          user: 'AKIA6AUKNJW5C2LMSKHQ',
-          pass: 'BI+pZVbipccysIf8/1hZBovEnkckG5Oz5egukDXOP8VF'
+          user: 'AKIATHCEAUINBXZPN3A3',
+          pass: 'BNLJTveu/X+KWe1e4XWe5zQ+4ryHbUDi8iliOheJiNfK'
         }
       }
     })
@@ -36,4 +36,4 @@ import { UsersModule } from './users/user.module';
   controllers: [AppController, AuthController, CompanyController, ArticleController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

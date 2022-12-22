@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/bca35bc4-2a28-4f0f-a267-3837a9157429/AppServices/subscriptions/bca35bc4-2a28-4f0f-a267-3837a9157429/resourceGroups/nest-lite-inventory-service_group/providers/Microsoft.Web/sites/nest-lite-inventory-service",
+  "appService.deploySubpath": "."
+}

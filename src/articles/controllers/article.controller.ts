@@ -9,47 +9,47 @@ import { ArticleService } from "../services/article.service";
 
 @Controller('article')
 export class ArticleController {
-    constructor(private articleService: ArticleService,
-                private mailService: MailerService) { }
+  constructor(private articleService: ArticleService,
+    private mailService: MailerService) { }
 
-    @Roles(Role.Admin)
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Post('create-article')
-    public async createArticle(@Body(new ValidationPipe()) createArticle: CreateArticleDto) {
-        return this.articleService.create(createArticle);
-    }
+  @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Post('create-article')
+  public async createArticle(@Body(new ValidationPipe()) createArticle: CreateArticleDto) {
+    return this.articleService.create(createArticle);
+  }
 
-    @Roles(Role.Admin, Role.External)
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Get('list-articles/:companyId')
-    public async listArticles(@Param('companyId') companyId: string) {
-        return this.articleService.findByCompany(companyId);
-    }
+  @Roles(Role.Admin, Role.External)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('list-articles/:companyId')
+  public async listArticles(@Param('companyId') companyId: string) {
+    return this.articleService.findByCompany(companyId);
+  }
 
-    @Roles(Role.Admin, Role.External)
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Get('export-articles/:companyId/:email')
-    public async exportArticles(@Res() res, @Param('companyId') companyId: string, @Param('email') email: string) {
-        const buffer = await this.articleService.exportArticlesPdf(companyId);
+  @Roles(Role.Admin, Role.External)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('export-articles/:companyId/:email')
+  public async exportArticles(@Res() res, @Param('companyId') companyId: string, @Param('email') email: string) {
+    const buffer = await this.articleService.exportArticlesPdf(companyId);
 
-        res.set({
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename=test.pdf',
-        'Content-Length': buffer.length,
-        });
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename=test.pdf',
+      'Content-Length': buffer.length,
+    });
 
-        res.end(buffer);
+    res.end(buffer);
 
-        await this.mailService.sendMail({
-            to: email,
-            from: 'jhaiderbeta@hotmail.com',
-            text: 'Testing Mail Service',
-            subject: 'Inventory',
-            attachments: [{
-                filename: 'Inventory.pdf',
-                contentType: 'application/pdf',
-                content: buffer,
-            }]
-        }); 
-    }
+    await this.mailService.sendMail({
+      to: email,
+      from: 'nicomesa2013@gmail.com',
+      text: 'Testing Mail Service',
+      subject: 'Inventory',
+      attachments: [{
+        filename: 'Inventory.pdf',
+        contentType: 'application/pdf',
+        content: buffer,
+      }]
+    });
+  }
 }
